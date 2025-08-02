@@ -9,28 +9,69 @@
 		compatible = "qcom,pil-tz-generic";
 		qcom,pas-id = <13>;
 		qcom,firmware-name = "a630_zap";
+		memory-region = <&pil_gpu_mem>;
+	};
+
+	gpu_opp_table: opp-table {
+		compatible = "operating-points-v2";
+
+		opp-710000000 {
+			opp-hz = /bits/ 64 <710000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+		};
+
+		opp-675000000 {
+			opp-hz = /bits/ 64 <675000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+		};
+
+		opp-596000000 {
+			opp-hz = /bits/ 64 <596000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
+		};
+
+		opp-520000000 {
+			opp-hz = /bits/ 64 <520000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+		};
+
+		opp-414000000 {
+			opp-hz = /bits/ 64 <414000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+		};
+
+		opp-342000000 {
+			opp-hz = /bits/ 64 <342000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+		};
+
+		opp-257000000 {
+			opp-hz = /bits/ 64 <257000000>;
+			opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+		};
 	};
 
 	msm_bus: qcom,kgsl-busmon{
 		label = "kgsl-busmon";
 		compatible = "qcom,kgsl-busmon";
+		operating-points-v2 = <&gpu_opp_table>;
 	};
 
 	gpu_bw_tbl: gpu-bw-tbl {
 		compatible = "operating-points-v2";
-		/* BW_OPP_ENTRY(   0, 4);    0 MB/s */
-		/* BW_OPP_ENTRY( 100, 4);  381 MB/s */
-		/* BW_OPP_ENTRY( 150, 4);  572 MB/s */
-		/* BW_OPP_ENTRY( 200, 4);  762 MB/s */
-		/* BW_OPP_ENTRY( 300, 4); 1144 MB/s */
-		BW_OPP_ENTRY( 412, 4); /* 1571 MB/s */
-		BW_OPP_ENTRY( 547, 4); /* 2086 MB/s */
-		BW_OPP_ENTRY( 681, 4); /* 2597 MB/s */
-		BW_OPP_ENTRY( 768, 4); /* 2929 MB/s */
-		BW_OPP_ENTRY(1017, 4); /* 3879 MB/s */
-		BW_OPP_ENTRY(1296, 4); /* 4943 MB/s */
-		BW_OPP_ENTRY(1555, 4); /* 5931 MB/s */
-		BW_OPP_ENTRY(1804, 4); /* 6881 MB/s */
+		opp-0    { opp-hz = /bits/ 64 <    0 >;   }; /*  BW_OPP_ENTRY(    0, 4);    0 MB/s */
+		opp-100  { opp-hz = /bits/ 64 <  381 >;   }; /*  BW_OPP_ENTRY(  100, 4);  381 MB/s */
+		opp-150  { opp-hz = /bits/ 64 <  572 >;   }; /*  BW_OPP_ENTRY(  150, 4);  572 MB/s */
+		opp-200  { opp-hz = /bits/ 64 <  762 >;   }; /*  BW_OPP_ENTRY(  200, 4);  762 MB/s */
+		opp-300  { opp-hz = /bits/ 64 < 1144 >;   }; /*  BW_OPP_ENTRY(  300, 4); 1144 MB/s */
+		opp-412  { opp-hz = /bits/ 64 < 1571 >;   }; /*  BW_OPP_ENTRY(  412, 4); 1571 MB/s */
+		opp-547  { opp-hz = /bits/ 64 < 2086 >;   }; /*  BW_OPP_ENTRY(  547, 4); 2086 MB/s */
+		opp-681  { opp-hz = /bits/ 64 < 2597 >;   }; /*  BW_OPP_ENTRY(  681, 4); 2597 MB/s */
+		opp-768  { opp-hz = /bits/ 64 < 2929 >;   }; /*  BW_OPP_ENTRY(  768, 4); 2929 MB/s */
+		opp-1017 { opp-hz = /bits/ 64 < 3879 >;   }; /*  BW_OPP_ENTRY( 1017, 4); 3879 MB/s */
+		opp-1296 { opp-hz = /bits/ 64 < 4943 >;   }; /*  BW_OPP_ENTRY( 1296, 4); 4943 MB/s */
+		opp-1555 { opp-hz = /bits/ 64 < 5931 >;   }; /*  BW_OPP_ENTRY( 1555, 4); 5931 MB/s */
+		opp-1804 { opp-hz = /bits/ 64 < 6881 >;   }; /*  BW_OPP_ENTRY( 1804, 4); 6881 MB/s */
 	};
 
 	gpubw: qcom,gpubw {
@@ -59,7 +100,7 @@
 		qcom,gpu-quirk-hfi-use-reg;
 		qcom,gpu-quirk-secvid-set-once;
 
-		qcom,idle-timeout = <64>; //msecs
+		qcom,idle-timeout = <58>; //msecs
 
 		qcom,highest-bank-bit = <15>;
 
@@ -76,8 +117,8 @@
 
 		tzone-names = "gpu0-usr", "gpu1-usr";
 
-		qcom,pm-qos-active-latency = <460>;
-		qcom,pm-qos-wakeup-latency = <460>;
+		qcom,pm-qos-active-latency = <44>;
+		qcom,pm-qos-wakeup-latency = <44>;
 
 		clocks = <&clock_gfx GPU_CC_GX_GFX3D_CLK>,
 			<&clock_gpucc GPU_CC_CXO_CLK>,
