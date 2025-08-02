@@ -1,10 +1,6 @@
 #include <dt-bindings/thermal/thermal.h>
 
-#ifndef CONFIG_ARM_QCOM_CPUFREQ_HW
 &clock_cpucc {
-#else
-&cpufreq_hw {
-#endif
 	qcom,cpu-isolation {
 		compatible = "qcom,cpu-isolate";
 		cpu0_isolate: cpu0-isolate {
