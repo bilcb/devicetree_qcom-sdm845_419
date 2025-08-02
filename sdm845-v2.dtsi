@@ -142,13 +142,13 @@
 
 	llcc_bw_opp_table_v2: llcc-bw-opp-table-v2 {
 		compatible = "operating-points-v2";
-		BW_OPP_ENTRY( 150, 16); /*  2288 MB/s */
-		BW_OPP_ENTRY( 300, 16); /*  4577 MB/s */
-		BW_OPP_ENTRY( 426, 16); /*  6500 MB/s */
-		BW_OPP_ENTRY( 533, 16); /*  8132 MB/s */
-		BW_OPP_ENTRY( 600, 16); /*  9155 MB/s */
-		BW_OPP_ENTRY( 806, 16); /* 12298 MB/s */
-		BW_OPP_ENTRY( 933, 16); /* 14236 MB/s */
+		opp-150 { opp-hz = /bits/ 64 <  2288 >;  }; /*  BW_OPP_ENTRY( 150, 16);  2288 MB/s */
+		opp-300 { opp-hz = /bits/ 64 <  4577 >;  }; /*  BW_OPP_ENTRY( 300, 16);  4577 MB/s */
+		opp-426 { opp-hz = /bits/ 64 <  6500 >;  }; /*  BW_OPP_ENTRY( 426, 16);  6500 MB/s */
+		opp-533 { opp-hz = /bits/ 64 <  8132 >;  }; /*  BW_OPP_ENTRY( 533, 16);  8132 MB/s */
+		opp-600 { opp-hz = /bits/ 64 <  9155 >;  }; /*  BW_OPP_ENTRY( 600, 16);  9155 MB/s */
+		opp-806 { opp-hz = /bits/ 64 < 12298 >;  }; /*  BW_OPP_ENTRY( 806, 16); 12298 MB/s */
+		opp-933 { opp-hz = /bits/ 64 < 14236 >;  }; /*  BW_OPP_ENTRY( 933, 16); 14236 MB/s */
 	};
 };
 
